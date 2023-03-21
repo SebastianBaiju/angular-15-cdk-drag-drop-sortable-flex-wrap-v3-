@@ -8,8 +8,6 @@ import {
 } from '@angular/core';
 import {
   CdkDragDrop,
-  CdkDragEnter,
-  CdkDragMove,
   moveItemInArray,
   CdkDropListGroup,
   CdkDrag,
@@ -57,11 +55,7 @@ export class AppComponent {
       return 0.5 - Math.random();
     });
   }
-  constructor(
-    private _render: Renderer2,
-    private viewportRuler: ViewportRuler,
-    private ref: ChangeDetectorRef
-  ) {}
+  constructor(private _render: Renderer2, private ref: ChangeDetectorRef) {}
 
   ngAfterViewInit() {}
 
@@ -96,13 +90,7 @@ export class AppComponent {
       }
     }
   }
-  mouseLeave(event, index) {}
 
-  cdkDropListEntered(event: any) {}
-  cdkDropListExited(event: any) {}
-  dragEntered(event: CdkDragEnter<number>) {}
-
-  dragExit(event: any) {}
   cdkDragStarted(event) {
     this.dragIndex = event.source.data;
     this.draged = event.source.data;
@@ -130,8 +118,6 @@ export class AppComponent {
     }
   }
 
-  dragMoved(event: CdkDragMove<number>) {}
-
   dropListEnterPredicate = (drag: CdkDrag, drop: CdkDropList) => {
     return false;
   };
@@ -142,38 +128,38 @@ export class AppComponent {
     //this.array_move(this.items, this.draged, this.dropIndex);
   }
 
-  array_move(arr, old_index, new_index) {
-    if (new_index >= arr.length) {
-      var k = new_index - arr.length + 1;
-      while (k--) {
-        arr.push(undefined);
-      }
-    }
-    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
-    return arr; // for testing
-  }
-  getPointerPositionOnPage(event: any) {
-    // `touches` will be empty for start/end events so we have to fall back to `changedTouches`.
-    const point = this.__isTouchEvent(event)
-      ? event.touches[0] || event.changedTouches[0]
-      : event;
-    const scrollPosition = this.viewportRuler.getViewportScrollPosition();
+  // array_move(arr, old_index, new_index) {
+  //   if (new_index >= arr.length) {
+  //     var k = new_index - arr.length + 1;
+  //     while (k--) {
+  //       arr.push(undefined);
+  //     }
+  //   }
+  //   arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+  //   return arr; // for testing
+  // }
+  // getPointerPositionOnPage(event: any) {
+  //   // `touches` will be empty for start/end events so we have to fall back to `changedTouches`.
+  //   const point = this.__isTouchEvent(event)
+  //     ? event.touches[0] || event.changedTouches[0]
+  //     : event;
+  //   const scrollPosition = this.viewportRuler.getViewportScrollPosition();
 
-    return {
-      x: point.pageX - scrollPosition.left,
-      y: point.pageY - scrollPosition.top,
-    };
-  }
-  __isTouchEvent(event: MouseEvent | TouchEvent): event is TouchEvent {
-    return event?.type.startsWith('touch');
-  }
+  //   return {
+  //     x: point.pageX - scrollPosition.left,
+  //     y: point.pageY - scrollPosition.top,
+  //   };
+  // }
+  // __isTouchEvent(event: MouseEvent | TouchEvent): event is TouchEvent {
+  //   return event?.type.startsWith('touch');
+  // }
 
-  __isInsideDropListClientRect(dropList: CdkDropList, x: number, y: number) {
-    const rect = dropList.element.nativeElement.getBoundingClientRect();
-    return (
-      y >= rect.top && y <= rect.bottom && x >= rect.left && x <= rect.right
-    );
-  }
+  // __isInsideDropListClientRect(dropList: CdkDropList, x: number, y: number) {
+  //   const rect = dropList.element.nativeElement.getBoundingClientRect();
+  //   return (
+  //     y >= rect.top && y <= rect.bottom && x >= rect.left && x <= rect.right
+  //   );
+  // }
   __indexOf(collection, node) {
     return Array.prototype.indexOf.call(collection, node);
   }

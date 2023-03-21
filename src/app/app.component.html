@@ -11,21 +11,16 @@
   <div
     *ngFor="let item of items; let i = index"
     cdkDropList
-    (cdkDropListEntered)="cdkDropListEntered($event)"
-    (cdkDropListExited)="cdkDropListExited($event)"
+
     [cdkDropListOrientation]="'horizontal'"
     [cdkDropListData]="i"
     (mouseover)="mouseEnter($event, i)"
-    (mouseout)="mouseLeave($event, i)"
     [cdkDropListEnterPredicate]="dropListEnterPredicate"
   >
     <div
       cdkDrag
       [cdkDragData]="i"
       (cdkDragStarted)="cdkDragStarted($event)"
-      (cdkDragExited)="dragExit($event)"
-      (cdkDragEntered)="dragEntered($event)"
-      (cdkDragMoved)="dragMoved($event)"
       (cdkDragDropped)="dragDropped($event)"
       (cdkDragReleased)="cdkDragReleased($event)"
       class="example-box"
