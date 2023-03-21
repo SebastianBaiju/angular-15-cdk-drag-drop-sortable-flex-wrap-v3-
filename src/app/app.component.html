@@ -1,4 +1,4 @@
-<h1>Angular 11: Drag & Drop with a flex-wrap</h1>
+<h1>Angular 14: Drag & Drop with a flex-wrap</h1>
 
 <button (click)="add()">Add</button> <button (click)="shuffle()">Shuffle</button
 ><br />
@@ -11,7 +11,6 @@
   <div
     *ngFor="let item of items; let i = index"
     cdkDropList
-
     [cdkDropListOrientation]="'horizontal'"
     [cdkDropListData]="i"
     (mouseover)="mouseEnter($event, i)"

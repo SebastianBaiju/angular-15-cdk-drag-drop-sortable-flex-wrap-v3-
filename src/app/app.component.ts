@@ -13,7 +13,6 @@ import {
   CdkDrag,
   CdkDropList,
 } from '@angular/cdk/drag-drop';
-import { ViewportRuler } from '@angular/cdk/overlay';
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -103,19 +102,19 @@ export class AppComponent {
   cdkDragReleased(event) {
     this.status = false;
     this._render.removeClass(this.temelement, 'example-box');
-    if (Array.from(this.listGroup._items).length < this.draged + 2) {
-      this._render.appendChild(
-        this.dropListContainer.nativeElement,
-        this.temelement
-      );
-    } else {
-      const currentElement = Array.from(this.listGroup._items)[this.draged + 1];
-      this._render.insertBefore(
-        this.dropListContainer.nativeElement,
-        this.temelement,
-        currentElement.element.nativeElement
-      );
-    }
+    // if (Array.from(this.listGroup._items).length < this.draged + 2) {
+    //   this._render.appendChild(
+    //     this.dropListContainer.nativeElement,
+    //     this.temelement
+    //   );
+    // } else {
+    //   const currentElement = Array.from(this.listGroup._items)[this.draged + 1];
+    //   this._render.insertBefore(
+    //     this.dropListContainer.nativeElement,
+    //     this.temelement,
+    //     currentElement.element.nativeElement
+    //   );
+    // }
   }
 
   dropListEnterPredicate = (drag: CdkDrag, drop: CdkDropList) => {
